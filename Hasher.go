@@ -15,7 +15,6 @@ func Hasher(password string, config Config) (string, error) {
 		return "", errors.New("Cannot create hash")
 	}
 	derivationKey := pbkdf2.Key([]byte(password), salt, config.Iterations, config.HashBytes, config.Algo)
-
 	saltBytes := make([]byte, 4)
 	iterationBytes := make([]byte, 4)
 	combinedBytes := make([]byte, 0)
@@ -27,5 +26,6 @@ func Hasher(password string, config Config) (string, error) {
 	combinedBytes = append(combinedBytes, salt...)
 	combinedBytes = append(combinedBytes, derivationKey...)
 	hash := base64.StdEncoding.EncodeToString(combinedBytes)
+
 	return hash, nil
 }

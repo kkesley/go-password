@@ -1,7 +1,7 @@
 package password
 
 import (
-	"crypto/sha512"
+	"crypto/sha256"
 	"hash"
 )
 
@@ -16,7 +16,8 @@ type Config struct {
 
 //DefaultConfig get default config for hashing
 func DefaultConfig() Config {
-	return CreateConfig(64, 16, 500000)
+	// return CreateConfig(32, 16, 65536)
+	return CreateConfig(32, 16, 16384)
 }
 
 //CreateConfig create specialized config
@@ -25,7 +26,7 @@ func CreateConfig(hashBytes int, saltBytes int, iterations int) Config {
 		HashBytes:  hashBytes,
 		SaltBytes:  saltBytes,
 		Iterations: iterations,
-		Algo:       sha512.New,
+		Algo:       sha256.New,
 		Encoding:   "base64",
 	}
 }
