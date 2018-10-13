@@ -16,7 +16,6 @@ type Config struct {
 
 //DefaultConfig get default config for hashing
 func DefaultConfig() Config {
-	// return CreateConfig(32, 16, 65536)
 	return CreateConfig(32, 16, 16384)
 }
 

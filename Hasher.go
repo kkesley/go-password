@@ -26,6 +26,5 @@ func Hasher(password string, config Config) (string, error) {
 	combinedBytes = append(combinedBytes, salt...)
 	combinedBytes = append(combinedBytes, derivationKey...)
 	hash := base64.StdEncoding.EncodeToString(combinedBytes)
-
 	return hash, nil
 }
